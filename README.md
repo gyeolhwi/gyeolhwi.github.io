@@ -160,6 +160,130 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 | Career | 타임라인 경력 카드 |
 | Contact | 폼 (react-hook-form) + 소셜 링크 |
 
+## 구현 현황
+
+> 마지막 업데이트: 2025-03-04
+>
+> 각 항목의 상태: ✅ 완료 | 🔧 진행중 | ⬜ 미착수
+
+### Phase 1: 프로젝트 초기화
+
+| 항목 | 상태 | 파일 | 비고 |
+|------|------|------|------|
+| Vite 프로젝트 생성 | ✅ | - | react-swc-ts 템플릿 |
+| 의존성 설치 | ✅ | `package.json` | 핵심 패키지 설치 완료 |
+| 경로 별칭 (`@/`) | ✅ | `vite.config.ts`, `tsconfig.app.json` | |
+| 폴더 구조 생성 | 🔧 | `src/` | 일부 폴더만 생성됨 |
+
+### Phase 2: 기반 시스템
+
+| 항목 | 상태 | 파일 | 비고 |
+|------|------|------|------|
+| 타입 정의 | ⬜ | `src/types/index.ts` | Project, Career, Profile 등 |
+| 테마 (dark/light) | ✅ | `src/styles/theme.ts` | Theme 인터페이스 + 두 테마 객체 |
+| styled.d.ts 타입 확장 | ✅ | `src/styles/styled.d.ts` | |
+| 글로벌 스타일 | ✅ | `src/styles/GlobalStyle.ts` | |
+| 테마 스토어 (Zustand) | ✅ | `src/store/useThemeStore.ts` | localStorage + 시스템 감지 |
+
+### Phase 3: 공통 컴포넌트
+
+| 항목 | 상태 | 파일 | 비고 |
+|------|------|------|------|
+| MeshBackground | ⬜ | `src/components/common/MeshBackground.tsx` | 애니메이티드 그라데이션 배경 |
+| ScrollContainer | ⬜ | `src/components/layout/ScrollContainer.tsx` | 유일한 스크롤 주체, forwardRef |
+| SectionTitle | ⬜ | `src/components/common/SectionTitle.tsx` | 그라데이션 텍스트 + whileInView |
+| Badge | ⬜ | `src/components/common/Badge.tsx` | 기술 태그 |
+| Modal | ⬜ | `src/components/common/Modal.tsx` | AnimatePresence + glass |
+| LoadingScreen | ⬜ | `src/components/common/LoadingScreen.tsx` | 철학 텍스트 + 프로그레스 바 |
+| GlassCard | ⬜ | `src/components/common/GlassCard.tsx` | 재사용 글래스 카드 (유틸리티) |
+
+### Phase 4: 레이아웃
+
+| 항목 | 상태 | 파일 | 비고 |
+|------|------|------|------|
+| Header | ⬜ | `src/components/layout/Header.tsx` | glass 헤더 + 네비 + 모바일 햄버거 |
+| Footer | ⬜ | `src/components/layout/Footer.tsx` | glass 푸터 + 소셜 링크 |
+| HomePage 조립 | 🔧 | `src/pages/HomePage.tsx` | 현재 Hero만 렌더링 중 |
+
+### Phase 5: 섹션 구현
+
+| 항목 | 상태 | 파일 | 비고 |
+|------|------|------|------|
+| Hero | 🔧 | `src/sections/Hero.tsx` | 스텁만 존재 (구현 필요) |
+| About | ⬜ | `src/sections/About.tsx` | 2열 그리드, glass 카드 |
+| Skills | ⬜ | `src/sections/Skills.tsx` | 벤토 그리드 4열→2열→1열 |
+| Projects | ⬜ | `src/sections/Projects.tsx` | 프로젝트 그리드 + 모달 연동 |
+| Career | ⬜ | `src/sections/Career.tsx` | 타임라인 + glass 카드 |
+| Contact | ⬜ | `src/sections/Contact.tsx` | 폼 + 소셜 링크 |
+
+### Phase 5-sub: 세부 컴포넌트
+
+| 항목 | 상태 | 파일 | 비고 |
+|------|------|------|------|
+| ProjectCard | ⬜ | `src/components/project/ProjectCard.tsx` | whileInView + whileHover |
+| ProjectModal | ⬜ | `src/components/project/ProjectModal.tsx` | Gallery + Markdown |
+| ProjectGallery | ⬜ | `src/components/project/ProjectGallery.tsx` | 이미지 그리드 |
+| FormInput | ⬜ | `src/components/contact/FormInput.tsx` | Input + TextArea (forwardRef) |
+| ContactForm | ⬜ | `src/components/contact/ContactForm.tsx` | react-hook-form + EmailJS |
+| SocialLinks | ⬜ | `src/components/contact/SocialLinks.tsx` | tagBg + hover 인터랙션 |
+
+### Hooks
+
+| 항목 | 상태 | 파일 | 비고 |
+|------|------|------|------|
+| useAppReady | ⬜ | `src/hooks/useAppReady.ts` | 이미지 프리로딩 + 최소 로딩 시간 |
+| useScrollSpy | ⬜ | `src/hooks/useScrollSpy.ts` | IntersectionObserver 활성 섹션 |
+| useScrollDirection | ⬜ | `src/hooks/useScrollDirection.ts` | 헤더 show/hide |
+| useContactForm | ⬜ | `src/hooks/useContactForm.ts` | 폼 제출 래퍼 |
+| useModal | ⬜ | `src/hooks/useModal.ts` | 모달 open/close |
+
+### 콘텐츠 데이터
+
+| 항목 | 상태 | 파일 | 비고 |
+|------|------|------|------|
+| 프로필 데이터 | ⬜ | `src/content/data/profile.ts` | 프로필 정보 + 분기별 Hero 이미지 |
+| 스킬 데이터 | ⬜ | `src/content/data/skills.ts` | 카테고리별 스킬 배열 |
+| 경력 데이터 | ⬜ | `src/content/data/careers.ts` | 경력 타임라인 |
+| 프로젝트 데이터 | ⬜ | `src/content/data/projects.ts` | 프로젝트 목록 + md import |
+| 프로젝트 마크다운 | ⬜ | `src/content/projects/*.md` | 프로젝트별 상세 설명 |
+
+### 유틸 & 설정
+
+| 항목 | 상태 | 파일 | 비고 |
+|------|------|------|------|
+| 환경 변수 래퍼 | ⬜ | `src/config/env.ts` | VITE_ 환경 변수 |
+| EmailJS 로직 | ⬜ | `src/lib/emailjs.ts` | 전송 + 폴백 |
+
+### Phase 6: 앱 조립
+
+| 항목 | 상태 | 파일 | 비고 |
+|------|------|------|------|
+| App.tsx 완성 | 🔧 | `src/App.tsx` | MeshBackground, AnimatePresence 미적용 |
+| 로딩 시스템 연동 | ⬜ | `src/App.tsx` | HomeRoute + useAppReady |
+| HomePage 완성 | ⬜ | `src/pages/HomePage.tsx` | Header + ScrollContainer + 전체 섹션 + Footer |
+
+### Phase 7: 배포
+
+| 항목 | 상태 | 파일 | 비고 |
+|------|------|------|------|
+| EmailJS .env 설정 | ⬜ | `.env` | Service/Template/Public Key |
+| 404.html SPA 우회 | ⬜ | `package.json` | postbuild 스크립트 |
+| GitHub Pages 배포 | ⬜ | - | gh-pages -d dist |
+
+### 진행 요약
+
+```
+Phase 1  ██████████░░  초기화          (거의 완료)
+Phase 2  ████████░░░░  기반 시스템      (타입 정의 남음)
+Phase 3  ░░░░░░░░░░░░  공통 컴포넌트    (미착수)
+Phase 4  ░░░░░░░░░░░░  레이아웃        (미착수)
+Phase 5  ░░░░░░░░░░░░  섹션 구현       (Hero 스텁만)
+Phase 6  ██░░░░░░░░░░  앱 조립         (기본 구조만)
+Phase 7  ░░░░░░░░░░░░  배포           (미착수)
+```
+
+---
+
 ## 어려웠던 점 & 해결 과정
 
 <!-- 개발하면서 겪은 문제와 어떻게 해결했는지 기록 -->
