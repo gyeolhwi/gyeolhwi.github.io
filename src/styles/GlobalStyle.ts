@@ -82,6 +82,7 @@ export const GlobalStyle = createGlobalStyle`
 
   #root {
     height: 100%;
+    isolation: isolate; // 배경 애니메이션 겹침 방지
   }
 /* #endregion: 기본 리셋 */
 
