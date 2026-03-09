@@ -162,7 +162,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 
 ## 구현 현황
 
-> 마지막 업데이트: 2026-03-09
+> 마지막 업데이트: 2026-03-10
 >
 > 각 항목의 상태: ✅ 완료 | 🔧 진행중 | ⬜ 미착수
 
@@ -172,38 +172,38 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 
 아래 번호는 **의존성/권장 순서**입니다. 순서를 바꾸고 싶으면 번호를 수정해서 사용하세요.
 
-| # | 우선순위 | 할 일 | 파일/위치 | 비고 |
-|---|----------|--------|-----------|------|
-| 1 | P0 | 타입 정의 | `src/types/index.ts` | Project, Career, Profile 등 — 다른 작업의 기반 |
-| 2 | P0 | 폴더 구조 마무리 | `src/` | Phase 1 나머지 |
-| 3 | P0 | MeshBackground | `components/common/MeshBackground.tsx` | 배경 없으면 화면 빈칸 |
-| 4 | P0 | ScrollContainer | `components/layout/ScrollContainer.tsx` | 스크롤 영역 래퍼 |
-| 5 | P0 | SectionTitle | `components/common/SectionTitle.tsx` | 섹션 제목 공통 |
-| 6 | P0 | GlassCard | `components/common/GlassCard.tsx` | 카드 UI 재사용 |
-| 7 | P0 | Header | `components/layout/Header.tsx` | 네비 + 모바일 메뉴 |
-| 8 | P0 | Footer | `components/layout/Footer.tsx` | 푸터 + 소셜 링크 |
-| 9 | P1 | Hero 섹션 구현 | `sections/Hero.tsx` | 현재 스텁 → 실제 UI |
-| 10 | P1 | About 섹션 | `sections/About.tsx` | 2열 그리드, glass 카드 |
-| 11 | P1 | Badge | `components/common/Badge.tsx` | 기술 태그 |
-| 12 | P1 | LoadingScreen | `components/common/LoadingScreen.tsx` | 로딩 화면 |
-| 13 | P1 | Modal | `components/common/Modal.tsx` | AnimatePresence + glass |
-| 14 | P1 | useModal | `hooks/useModal.ts` | 모달 상태 훅 |
-| 15 | P2 | Skills 섹션 | `sections/Skills.tsx` | 벤토 그리드 |
-| 16 | P2 | 스킬 데이터 | `content/data/skills.ts` | Skills용 |
-| 17 | P2 | 프로필 데이터 | `content/data/profile.ts` | Hero/About용 |
-| 18 | P2 | ProjectCard, ProjectModal, ProjectGallery | `components/project/*` | Projects 섹션용 |
-| 19 | P2 | Projects 섹션 | `sections/Projects.tsx` | 그리드 + 모달 연동 |
-| 20 | P2 | 프로젝트 데이터 + 마크다운 | `content/data/projects.ts`, `content/projects/*.md` | |
-| 21 | P2 | Career 섹션 | `sections/Career.tsx` | 타임라인 |
-| 22 | P2 | 경력 데이터 | `content/data/careers.ts` | |
-| 23 | P3 | FormInput, ContactForm, SocialLinks | `components/contact/*` | Contact용 |
-| 24 | P3 | Contact 섹션 | `sections/Contact.tsx` | 폼 + 소셜 |
-| 25 | P3 | useContactForm | `hooks/useContactForm.ts` | |
-| 26 | P3 | useAppReady, useScrollSpy, useScrollDirection | `hooks/*` | 앱/헤더 연동 |
-| 27 | P3 | App.tsx 완성 | `App.tsx` | MeshBackground, AnimatePresence, 로딩 연동 |
-| 28 | P3 | HomePage 완성 | `pages/HomePage.tsx` | 전체 섹션 조립 |
-| 29 | P4 | env 래퍼, EmailJS | `config/env.ts`, `lib/emailjs.ts` | Contact 제출용 |
-| 30 | P4 | .env, 404 우회, gh-pages 배포 | `.env`, `package.json` | Phase 7 |
+| # | 상태 | 우선순위 | 할 일 | 파일/위치 | 비고 |
+|---|------|----------|--------|-----------|------|
+| 1 | ✅ | P0 | 타입 정의 | `src/types/index.ts` | Project, Career, Profile 등 — 다른 작업의 기반 |
+| 2 | ✅ | P0 | 폴더 구조 마무리 | `src/` | Phase 1 나머지 |
+| 3 | ✅ | P0 | MeshBackground | `components/common/MeshBackground.tsx` | 배경 없으면 화면 빈칸 |
+| 4 | ⬜ | P0 | ScrollContainer | `components/layout/ScrollContainer.tsx` | 스크롤 영역 래퍼 |
+| 5 | ⬜ | P0 | SectionTitle | `components/common/SectionTitle.tsx` | 섹션 제목 공통 |
+| 6 | ⬜ | P0 | GlassCard | `components/common/GlassCard.tsx` | 카드 UI 재사용 |
+| 7 | ⬜ | P0 | Header | `components/layout/Header.tsx` | 네비 + 모바일 메뉴 |
+| 8 | ⬜ | P0 | Footer | `components/layout/Footer.tsx` | 푸터 + 소셜 링크 |
+| 9 | ⬜ | P1 | Hero 섹션 구현 | `sections/Hero.tsx` | 현재 스텁 → 실제 UI |
+| 10 | ⬜ | P1 | About 섹션 | `sections/About.tsx` | 2열 그리드, glass 카드 |
+| 11 | ⬜ | P1 | Badge | `components/common/Badge.tsx` | 기술 태그 |
+| 12 | ⬜ | P1 | LoadingScreen | `components/common/LoadingScreen.tsx` | 로딩 화면 |
+| 13 | ⬜ | P1 | Modal | `components/common/Modal.tsx` | AnimatePresence + glass |
+| 14 | ⬜ | P1 | useModal | `hooks/useModal.ts` | 모달 상태 훅 |
+| 15 | ⬜ | P2 | Skills 섹션 | `sections/Skills.tsx` | 벤토 그리드 |
+| 16 | ⬜ | P2 | 스킬 데이터 | `content/data/skills.ts` | Skills용 |
+| 17 | ⬜ | P2 | 프로필 데이터 | `content/data/profile.ts` | Hero/About용 |
+| 18 | ⬜ | P2 | ProjectCard, ProjectModal, ProjectGallery | `components/project/*` | Projects 섹션용 |
+| 19 | ⬜ | P2 | Projects 섹션 | `sections/Projects.tsx` | 그리드 + 모달 연동 |
+| 20 | ⬜ | P2 | 프로젝트 데이터 + 마크다운 | `content/data/projects.ts`, `content/projects/*.md` | |
+| 21 | ⬜ | P2 | Career 섹션 | `sections/Career.tsx` | 타임라인 |
+| 22 | ⬜ | P2 | 경력 데이터 | `content/data/careers.ts` | |
+| 23 | ⬜ | P3 | FormInput, ContactForm, SocialLinks | `components/contact/*` | Contact용 |
+| 24 | ⬜ | P3 | Contact 섹션 | `sections/Contact.tsx` | 폼 + 소셜 |
+| 25 | ⬜ | P3 | useContactForm | `hooks/useContactForm.ts` | |
+| 26 | ⬜ | P3 | useAppReady, useScrollSpy, useScrollDirection | `hooks/*` | 앱/헤더 연동 |
+| 27 | ⬜ | P3 | App.tsx 완성 | `App.tsx` | MeshBackground, AnimatePresence, 로딩 연동 |
+| 28 | ⬜ | P3 | HomePage 완성 | `pages/HomePage.tsx` | 전체 섹션 조립 |
+| 29 | ⬜ | P4 | env 래퍼, EmailJS | `config/env.ts`, `lib/emailjs.ts` | Contact 제출용 |
+| 30 | ⬜ | P4 | .env, 404 우회, gh-pages 배포 | `.env`, `package.json` | Phase 7 |
 
 - **P0**: 기반(타입, 레이아웃, 공통 컴포넌트) — 먼저 하면 이후 작업이 수월함  
 - **P1**: 첫 화면(Hero, About) + 로딩/모달  
@@ -238,7 +238,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
-| MeshBackground | ⬜ | `src/components/common/MeshBackground.tsx` | 애니메이티드 그라데이션 배경 |
+| MeshBackground | ✅ | `src/components/common/MeshBackground.tsx` | 애니메이티드 그라데이션 배경 |
 | ScrollContainer | ⬜ | `src/components/layout/ScrollContainer.tsx` | 유일한 스크롤 주체, forwardRef |
 | SectionTitle | ⬜ | `src/components/common/SectionTitle.tsx` | 그라데이션 텍스트 + whileInView |
 | Badge | ⬜ | `src/components/common/Badge.tsx` | 기술 태그 |
@@ -307,7 +307,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
-| App.tsx 완성 | 🔧 | `src/App.tsx` | MeshBackground, AnimatePresence 미적용 |
+| App.tsx 완성 | 🔧 | `src/App.tsx` | MeshBackground 적용, AnimatePresence 미적용 |
 | 로딩 시스템 연동 | ⬜ | `src/App.tsx` | HomeRoute + useAppReady |
 | HomePage 완성 | ⬜ | `src/pages/HomePage.tsx` | Header + ScrollContainer + 전체 섹션 + Footer |
 
@@ -324,7 +324,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 ```
 Phase 1  ████████████  초기화          (완료)
 Phase 2  ████████████  기반 시스템      (완료)
-Phase 3  ░░░░░░░░░░░░  공통 컴포넌트    (미착수)
+Phase 3  ██░░░░░░░░░░  공통 컴포넌트    (MeshBackground 완료)
 Phase 4  ░░░░░░░░░░░░  레이아웃        (미착수)
 Phase 5  ░░░░░░░░░░░░  섹션 구현       (Hero 스텁만)
 Phase 6  ██░░░░░░░░░░  앱 조립         (기본 구조만)
