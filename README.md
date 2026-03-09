@@ -162,30 +162,79 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 
 ## 구현 현황
 
-> 마지막 업데이트: 2025-03-04
+> 마지막 업데이트: 2026-03-09
 >
 > 각 항목의 상태: ✅ 완료 | 🔧 진행중 | ⬜ 미착수
 
-### Phase 1: 프로젝트 초기화
+---
+
+### 할 일 우선순위 (순서 조정용)
+
+아래 번호는 **의존성/권장 순서**입니다. 순서를 바꾸고 싶으면 번호를 수정해서 사용하세요.
+
+| # | 우선순위 | 할 일 | 파일/위치 | 비고 |
+|---|----------|--------|-----------|------|
+| 1 | P0 | 타입 정의 | `src/types/index.ts` | Project, Career, Profile 등 — 다른 작업의 기반 |
+| 2 | P0 | 폴더 구조 마무리 | `src/` | Phase 1 나머지 |
+| 3 | P0 | MeshBackground | `components/common/MeshBackground.tsx` | 배경 없으면 화면 빈칸 |
+| 4 | P0 | ScrollContainer | `components/layout/ScrollContainer.tsx` | 스크롤 영역 래퍼 |
+| 5 | P0 | SectionTitle | `components/common/SectionTitle.tsx` | 섹션 제목 공통 |
+| 6 | P0 | GlassCard | `components/common/GlassCard.tsx` | 카드 UI 재사용 |
+| 7 | P0 | Header | `components/layout/Header.tsx` | 네비 + 모바일 메뉴 |
+| 8 | P0 | Footer | `components/layout/Footer.tsx` | 푸터 + 소셜 링크 |
+| 9 | P1 | Hero 섹션 구현 | `sections/Hero.tsx` | 현재 스텁 → 실제 UI |
+| 10 | P1 | About 섹션 | `sections/About.tsx` | 2열 그리드, glass 카드 |
+| 11 | P1 | Badge | `components/common/Badge.tsx` | 기술 태그 |
+| 12 | P1 | LoadingScreen | `components/common/LoadingScreen.tsx` | 로딩 화면 |
+| 13 | P1 | Modal | `components/common/Modal.tsx` | AnimatePresence + glass |
+| 14 | P1 | useModal | `hooks/useModal.ts` | 모달 상태 훅 |
+| 15 | P2 | Skills 섹션 | `sections/Skills.tsx` | 벤토 그리드 |
+| 16 | P2 | 스킬 데이터 | `content/data/skills.ts` | Skills용 |
+| 17 | P2 | 프로필 데이터 | `content/data/profile.ts` | Hero/About용 |
+| 18 | P2 | ProjectCard, ProjectModal, ProjectGallery | `components/project/*` | Projects 섹션용 |
+| 19 | P2 | Projects 섹션 | `sections/Projects.tsx` | 그리드 + 모달 연동 |
+| 20 | P2 | 프로젝트 데이터 + 마크다운 | `content/data/projects.ts`, `content/projects/*.md` | |
+| 21 | P2 | Career 섹션 | `sections/Career.tsx` | 타임라인 |
+| 22 | P2 | 경력 데이터 | `content/data/careers.ts` | |
+| 23 | P3 | FormInput, ContactForm, SocialLinks | `components/contact/*` | Contact용 |
+| 24 | P3 | Contact 섹션 | `sections/Contact.tsx` | 폼 + 소셜 |
+| 25 | P3 | useContactForm | `hooks/useContactForm.ts` | |
+| 26 | P3 | useAppReady, useScrollSpy, useScrollDirection | `hooks/*` | 앱/헤더 연동 |
+| 27 | P3 | App.tsx 완성 | `App.tsx` | MeshBackground, AnimatePresence, 로딩 연동 |
+| 28 | P3 | HomePage 완성 | `pages/HomePage.tsx` | 전체 섹션 조립 |
+| 29 | P4 | env 래퍼, EmailJS | `config/env.ts`, `lib/emailjs.ts` | Contact 제출용 |
+| 30 | P4 | .env, 404 우회, gh-pages 배포 | `.env`, `package.json` | Phase 7 |
+
+- **P0**: 기반(타입, 레이아웃, 공통 컴포넌트) — 먼저 하면 이후 작업이 수월함  
+- **P1**: 첫 화면(Hero, About) + 로딩/모달  
+- **P2**: 나머지 섹션(Skills, Projects, Career) + 해당 데이터  
+- **P3**: Contact, 훅 연동, 앱/페이지 조립  
+- **P4**: 배포·환경 설정  
+
+---
+
+### Phase별 상세 현황
+
+#### Phase 1: 프로젝트 초기화
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
 | Vite 프로젝트 생성 | ✅ | - | react-swc-ts 템플릿 |
 | 의존성 설치 | ✅ | `package.json` | 핵심 패키지 설치 완료 |
 | 경로 별칭 (`@/`) | ✅ | `vite.config.ts`, `tsconfig.app.json` | |
-| 폴더 구조 생성 | 🔧 | `src/` | 일부 폴더만 생성됨 |
+| 폴더 구조 생성 | ✅ | `src/` | README 구조 기준 완료 |
 
-### Phase 2: 기반 시스템
+#### Phase 2: 기반 시스템
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
-| 타입 정의 | ⬜ | `src/types/index.ts` | Project, Career, Profile 등 |
+| 타입 정의 | ✅ | `src/types/index.ts` | Profile, Career, Skills, Project, Image |
 | 테마 (dark/light) | ✅ | `src/styles/theme.ts` | Theme 인터페이스 + 두 테마 객체 |
 | styled.d.ts 타입 확장 | ✅ | `src/styles/styled.d.ts` | |
 | 글로벌 스타일 | ✅ | `src/styles/GlobalStyle.ts` | |
 | 테마 스토어 (Zustand) | ✅ | `src/store/useThemeStore.ts` | localStorage + 시스템 감지 |
 
-### Phase 3: 공통 컴포넌트
+#### Phase 3: 공통 컴포넌트
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
@@ -197,7 +246,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 | LoadingScreen | ⬜ | `src/components/common/LoadingScreen.tsx` | 철학 텍스트 + 프로그레스 바 |
 | GlassCard | ⬜ | `src/components/common/GlassCard.tsx` | 재사용 글래스 카드 (유틸리티) |
 
-### Phase 4: 레이아웃
+#### Phase 4: 레이아웃
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
@@ -205,7 +254,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 | Footer | ⬜ | `src/components/layout/Footer.tsx` | glass 푸터 + 소셜 링크 |
 | HomePage 조립 | 🔧 | `src/pages/HomePage.tsx` | 현재 Hero만 렌더링 중 |
 
-### Phase 5: 섹션 구현
+#### Phase 5: 섹션 구현
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
@@ -216,7 +265,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 | Career | ⬜ | `src/sections/Career.tsx` | 타임라인 + glass 카드 |
 | Contact | ⬜ | `src/sections/Contact.tsx` | 폼 + 소셜 링크 |
 
-### Phase 5-sub: 세부 컴포넌트
+#### Phase 5-sub: 세부 컴포넌트
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
@@ -227,7 +276,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 | ContactForm | ⬜ | `src/components/contact/ContactForm.tsx` | react-hook-form + EmailJS |
 | SocialLinks | ⬜ | `src/components/contact/SocialLinks.tsx` | tagBg + hover 인터랙션 |
 
-### Hooks
+#### Hooks
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
@@ -237,7 +286,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 | useContactForm | ⬜ | `src/hooks/useContactForm.ts` | 폼 제출 래퍼 |
 | useModal | ⬜ | `src/hooks/useModal.ts` | 모달 open/close |
 
-### 콘텐츠 데이터
+#### 콘텐츠 데이터
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
@@ -247,14 +296,14 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 | 프로젝트 데이터 | ⬜ | `src/content/data/projects.ts` | 프로젝트 목록 + md import |
 | 프로젝트 마크다운 | ⬜ | `src/content/projects/*.md` | 프로젝트별 상세 설명 |
 
-### 유틸 & 설정
+#### 유틸 & 설정
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
 | 환경 변수 래퍼 | ⬜ | `src/config/env.ts` | VITE_ 환경 변수 |
 | EmailJS 로직 | ⬜ | `src/lib/emailjs.ts` | 전송 + 폴백 |
 
-### Phase 6: 앱 조립
+#### Phase 6: 앱 조립
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
@@ -262,7 +311,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 | 로딩 시스템 연동 | ⬜ | `src/App.tsx` | HomeRoute + useAppReady |
 | HomePage 완성 | ⬜ | `src/pages/HomePage.tsx` | Header + ScrollContainer + 전체 섹션 + Footer |
 
-### Phase 7: 배포
+#### Phase 7: 배포
 
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
@@ -270,11 +319,11 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 | 404.html SPA 우회 | ⬜ | `package.json` | postbuild 스크립트 |
 | GitHub Pages 배포 | ⬜ | - | gh-pages -d dist |
 
-### 진행 요약
+#### 진행 요약
 
 ```
-Phase 1  ██████████░░  초기화          (거의 완료)
-Phase 2  ████████░░░░  기반 시스템      (타입 정의 남음)
+Phase 1  ████████████  초기화          (완료)
+Phase 2  ████████████  기반 시스템      (완료)
 Phase 3  ░░░░░░░░░░░░  공통 컴포넌트    (미착수)
 Phase 4  ░░░░░░░░░░░░  레이아웃        (미착수)
 Phase 5  ░░░░░░░░░░░░  섹션 구현       (Hero 스텁만)
@@ -297,6 +346,17 @@ Phase 7  ░░░░░░░░░░░░  배포           (미착수)
 > **해결**: (어떻게 해결했는지)
 >
 > **배운 점**: (이 과정에서 무엇을 배웠는지)
+
+### 우선순위 선정
+
+> **문제**: (어떤 문제가 발생했는지)
+>
+> **원인**: (왜 발생했는지)
+>
+> **해결**: (어떻게 해결했는지)
+>
+> **배운 점**: (이 과정에서 무엇을 배웠는지)
+
 
 ## 회고
 
