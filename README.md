@@ -177,7 +177,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 | 1 | ✅ | P0 | 타입 정의 | `src/types/index.ts` | Project, Career, Profile 등 — 다른 작업의 기반 |
 | 2 | ✅ | P0 | 폴더 구조 마무리 | `src/` | Phase 1 나머지 |
 | 3 | ✅ | P0 | MeshBackground | `components/common/MeshBackground.tsx` | 배경 없으면 화면 빈칸 |
-| 4 | ⬜ | P0 | ScrollContainer | `components/layout/ScrollContainer.tsx` | 스크롤 영역 래퍼 |
+| 4 | ✅ | P0 | ScrollContainer | `components/layout/ScrollContainer.tsx` | 스크롤 영역 래퍼 (ref prop, scrollbar 스타일) |
 | 5 | ⬜ | P0 | SectionTitle | `components/common/SectionTitle.tsx` | 섹션 제목 공통 |
 | 6 | ⬜ | P0 | GlassCard | `components/common/GlassCard.tsx` | 카드 UI 재사용 |
 | 7 | ⬜ | P0 | Header | `components/layout/Header.tsx` | 네비 + 모바일 메뉴 |
@@ -239,7 +239,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 | 항목 | 상태 | 파일 | 비고 |
 |------|------|------|------|
 | MeshBackground | ✅ | `src/components/common/MeshBackground.tsx` | 애니메이티드 그라데이션 배경 |
-| ScrollContainer | ⬜ | `src/components/layout/ScrollContainer.tsx` | 유일한 스크롤 주체, forwardRef |
+| ScrollContainer | ✅ | `src/components/layout/ScrollContainer.tsx` | 유일한 스크롤 주체, ref prop(React 19), scrollbar-width/scrollbar-color |
 | SectionTitle | ⬜ | `src/components/common/SectionTitle.tsx` | 그라데이션 텍스트 + whileInView |
 | Badge | ⬜ | `src/components/common/Badge.tsx` | 기술 태그 |
 | Modal | ⬜ | `src/components/common/Modal.tsx` | AnimatePresence + glass |
@@ -324,7 +324,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 ```
 Phase 1  ████████████  초기화          (완료)
 Phase 2  ████████████  기반 시스템      (완료)
-Phase 3  ██░░░░░░░░░░  공통 컴포넌트    (MeshBackground 완료)
+Phase 3  ████░░░░░░░░  공통 컴포넌트    (MeshBackground, ScrollContainer 완료)
 Phase 4  ░░░░░░░░░░░░  레이아웃        (미착수)
 Phase 5  ░░░░░░░░░░░░  섹션 구현       (Hero 스텁만)
 Phase 6  ██░░░░░░░░░░  앱 조립         (기본 구조만)
