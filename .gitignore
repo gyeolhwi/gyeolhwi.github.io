@@ -34,3 +34,5 @@ docs/
 # Claude/Cursor 로컬 설정 (커맨드 등)
 .claude/
 .cursor/
+
+.omc/
