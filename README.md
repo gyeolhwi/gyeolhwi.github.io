@@ -162,7 +162,7 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 
 ## 구현 현황
 
-> 마지막 업데이트: 2026-03-10
+> 마지막 업데이트: 2026-04-19
 >
 > 각 항목의 상태: ✅ 완료 | 🔧 진행중 | ⬜ 미착수
 
@@ -170,46 +170,57 @@ AI를 활용하면 결과물 자체는 금방 나오는 시대다. 하지만 이
 
 ### 할 일 우선순위 (순서 조정용)
 
-아래 번호는 **의존성/권장 순서**입니다. 순서를 바꾸고 싶으면 번호를 수정해서 사용하세요.
+아래 번호는 **의존성/권장 순서**입니다. **#5(SectionTitle)까지는 기반 작업**이고, **#6부터는 Batch 단위**로 묶여 있습니다.
 
-| # | 상태 | 우선순위 | 할 일 | 파일/위치 | 비고 |
-|---|------|----------|--------|-----------|------|
-| 1 | ✅ | P0 | 타입 정의 | `src/types/index.ts` | Project, Career, Profile 등 — 다른 작업의 기반 |
-| 2 | ✅ | P0 | 폴더 구조 마무리 | `src/` | Phase 1 나머지 |
-| 3 | ✅ | P0 | MeshBackground | `components/common/MeshBackground.tsx` | 배경 없으면 화면 빈칸 |
-| 4 | ✅ | P0 | ScrollContainer | `components/layout/ScrollContainer.tsx` | 스크롤 영역 래퍼 (ref prop, scrollbar 스타일) |
-| 5 | ⬜ | P0 | SectionTitle | `components/common/SectionTitle.tsx` | 섹션 제목 공통 |
-| 6 | ⬜ | P0 | GlassCard | `components/common/GlassCard.tsx` | 카드 UI 재사용 |
-| 7 | ⬜ | P0 | Header | `components/layout/Header.tsx` | 네비 + 모바일 메뉴 |
-| 8 | ⬜ | P0 | Footer | `components/layout/Footer.tsx` | 푸터 + 소셜 링크 |
-| 9 | ⬜ | P1 | Hero 섹션 구현 | `sections/Hero.tsx` | 현재 스텁 → 실제 UI |
-| 10 | ⬜ | P1 | About 섹션 | `sections/About.tsx` | 2열 그리드, glass 카드 |
-| 11 | ⬜ | P1 | Badge | `components/common/Badge.tsx` | 기술 태그 |
-| 12 | ⬜ | P1 | LoadingScreen | `components/common/LoadingScreen.tsx` | 로딩 화면 |
-| 13 | ⬜ | P1 | Modal | `components/common/Modal.tsx` | AnimatePresence + glass |
-| 14 | ⬜ | P1 | useModal | `hooks/useModal.ts` | 모달 상태 훅 |
-| 15 | ⬜ | P2 | Skills 섹션 | `sections/Skills.tsx` | 벤토 그리드 |
-| 16 | ⬜ | P2 | 스킬 데이터 | `content/data/skills.ts` | Skills용 |
-| 17 | ⬜ | P2 | 프로필 데이터 | `content/data/profile.ts` | Hero/About용 |
-| 18 | ⬜ | P2 | ProjectCard, ProjectModal, ProjectGallery | `components/project/*` | Projects 섹션용 |
-| 19 | ⬜ | P2 | Projects 섹션 | `sections/Projects.tsx` | 그리드 + 모달 연동 |
-| 20 | ⬜ | P2 | 프로젝트 데이터 + 마크다운 | `content/data/projects.ts`, `content/projects/*.md` | |
-| 21 | ⬜ | P2 | Career 섹션 | `sections/Career.tsx` | 타임라인 |
-| 22 | ⬜ | P2 | 경력 데이터 | `content/data/careers.ts` | |
-| 23 | ⬜ | P3 | FormInput, ContactForm, SocialLinks | `components/contact/*` | Contact용 |
-| 24 | ⬜ | P3 | Contact 섹션 | `sections/Contact.tsx` | 폼 + 소셜 |
-| 25 | ⬜ | P3 | useContactForm | `hooks/useContactForm.ts` | |
-| 26 | ⬜ | P3 | useAppReady, useScrollSpy, useScrollDirection | `hooks/*` | 앱/헤더 연동 |
-| 27 | ⬜ | P3 | App.tsx 완성 | `App.tsx` | MeshBackground, AnimatePresence, 로딩 연동 |
-| 28 | ⬜ | P3 | HomePage 완성 | `pages/HomePage.tsx` | 전체 섹션 조립 |
-| 29 | ⬜ | P4 | env 래퍼, EmailJS | `config/env.ts`, `lib/emailjs.ts` | Contact 제출용 |
-| 30 | ⬜ | P4 | .env, 404 우회, gh-pages 배포 | `.env`, `package.json` | Phase 7 |
+> **Batch 원칙**: 비슷한 학습 주제 2~3개를 묶고, 묶음 끝에서 **즉시 사용처(★)** 를 만들어 검증한다.
+> 이렇게 하면 추측한 API가 바로 검증되고, 다음 Batch에서 이전 자산을 다시 꺼내 쓰며 자연스럽게 인출 연습이 일어난다.
 
-- **P0**: 기반(타입, 레이아웃, 공통 컴포넌트) — 먼저 하면 이후 작업이 수월함  
-- **P1**: 첫 화면(Hero, About) + 로딩/모달  
-- **P2**: 나머지 섹션(Skills, Projects, Career) + 해당 데이터  
-- **P3**: Contact, 훅 연동, 앱/페이지 조립  
-- **P4**: 배포·환경 설정  
+| # | 상태 | Batch | 할 일 | 파일/위치 | 비고 |
+|---|------|-------|--------|-----------|------|
+| 1 | ✅ | - | 타입 정의 | `src/types/index.ts` | Project, Career, Profile 등 — 다른 작업의 기반 |
+| 2 | ✅ | - | 폴더 구조 마무리 | `src/` | Phase 1 나머지 |
+| 3 | ✅ | - | MeshBackground | `components/common/MeshBackground.tsx` | 배경 없으면 화면 빈칸 |
+| 4 | ✅ | - | ScrollContainer | `components/layout/ScrollContainer.tsx` | 스크롤 영역 래퍼 (ref prop, scrollbar 스타일) |
+| 5 | 🔧 | A | SectionTitle | `components/common/SectionTitle.tsx` | 그라데이션 텍스트 + whileInView |
+| 6 | ⬜ | A | GlassCard | `components/common/GlassCard.tsx` | backdrop-filter glass 카드 (재사용 유틸) |
+| 7 | ⬜ | A | 프로필 데이터 | `content/data/profile.ts` | About에서 사용 |
+| 8 | ⬜ | A | ★ About 섹션 | `sections/About.tsx` | SectionTitle + GlassCard 첫 검증 |
+| 9 | ⬜ | B | Hero 섹션 | `sections/Hero.tsx` | profile 재활용 (인출 연습) |
+| 10 | ⬜ | B | Badge | `components/common/Badge.tsx` | Skills에서 사용할 기술 태그 |
+| 11 | ⬜ | B | 스킬 데이터 | `content/data/skills.ts` | Skills용 |
+| 12 | ⬜ | B | ★ Skills 섹션 | `sections/Skills.tsx` | 벤토 그리드 + Badge 검증 |
+| 13 | ⬜ | C | useModal | `hooks/useModal.ts` | 제네릭 모달 상태 훅 |
+| 14 | ⬜ | C | Modal | `components/common/Modal.tsx` | AnimatePresence + glass |
+| 15 | ⬜ | C | ProjectCard, ProjectModal, ProjectGallery | `components/project/*` | Modal 재사용 |
+| 16 | ⬜ | C | 프로젝트 데이터 + 마크다운 | `content/data/projects.ts`, `content/projects/*.md` | |
+| 17 | ⬜ | C | ★ Projects 섹션 | `sections/Projects.tsx` | Modal + Card 검증 |
+| 18 | ⬜ | D | 경력 데이터 | `content/data/careers.ts` | |
+| 19 | ⬜ | D | ★ Career 섹션 | `sections/Career.tsx` | 타임라인 패턴 |
+| 20 | ⬜ | E | useScrollSpy | `hooks/useScrollSpy.ts` | IntersectionObserver 기반 활성 섹션 |
+| 21 | ⬜ | E | useScrollDirection | `hooks/useScrollDirection.ts` | 헤더 show/hide |
+| 22 | ⬜ | E | ★ Header | `components/layout/Header.tsx` | 두 훅 검증 (모든 섹션 존재 시점에 작업) |
+| 23 | ⬜ | E | Footer | `components/layout/Footer.tsx` | glass 푸터 + 소셜 링크 |
+| 24 | ⬜ | F | FormInput | `components/contact/FormInput.tsx` | Input/TextArea (forwardRef) |
+| 25 | ⬜ | F | useContactForm | `hooks/useContactForm.ts` | react-hook-form 래퍼 |
+| 26 | ⬜ | F | ContactForm + SocialLinks | `components/contact/*` | EmailJS 연동 |
+| 27 | ⬜ | F | ★ Contact 섹션 | `sections/Contact.tsx` | 폼 + 소셜 검증 |
+| 28 | ⬜ | G | useAppReady | `hooks/useAppReady.ts` | 이미지 프리로딩 + 최소 로딩 시간 |
+| 29 | ⬜ | G | LoadingScreen | `components/common/LoadingScreen.tsx` | 철학 텍스트 + 프로그레스 바 |
+| 30 | ⬜ | G | App.tsx 완성 | `src/App.tsx` | AnimatePresence + 로딩 연동 |
+| 31 | ⬜ | G | ★ HomePage 완성 | `src/pages/HomePage.tsx` | 전체 섹션 조립 |
+| 32 | ⬜ | H | env 래퍼, EmailJS | `config/env.ts`, `lib/emailjs.ts` | Contact 제출용 |
+| 33 | ⬜ | H | .env, 404 우회, gh-pages 배포 | `.env`, `package.json` | Phase 7 |
+
+> **★ 표시** = 그 Batch의 검증 시점 (이전 작업물을 실제로 사용해보는 단계)
+
+- **Batch A**: styled-components 그라데이션/glass 패턴 → About에서 검증  
+- **Batch B**: 데이터 재사용 + 콘텐츠 섹션 (Hero, Skills) — Batch A 자산 재사용  
+- **Batch C**: 모달 패턴 (훅 + 컴포넌트 + Portal) → Projects에서 검증  
+- **Batch D**: 타임라인 패턴 → Career  
+- **Batch E**: 스크롤 인터랙션 훅 + 레이아웃 (Header/Footer는 모든 섹션 존재 후 작업)  
+- **Batch F**: 폼 패턴 (forwardRef + 커스텀 훅) → Contact에서 검증  
+- **Batch G**: 앱 라이프사이클 + 최종 조립  
+- **Batch H**: 배포·환경 설정  
 
 ---
 
